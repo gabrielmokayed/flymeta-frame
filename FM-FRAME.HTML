@@ -34,13 +34,6 @@
       background-color: #0056b3;
     }
   </style>
-</head>
-<body>
-  <h1>Flymeta</h1>
-  <p>Discover a random destination!</p>
-  <img id="destinationImage" src="" alt="Destination Image">
-  <button onclick="showRandomDestination()">Reveal your destination</button>
-
   <script>
     // Function to fetch JSON data
     async function fetchDestinations() {
@@ -50,7 +43,7 @@
           throw new Error('Failed to fetch JSON data');
         }
         const data = await response.json();
-        return data.data.images;
+        return data.data.images; // Access the images array
       } catch (error) {
         console.error('Error fetching JSON data:', error);
         return [];
@@ -70,7 +63,15 @@
     }
 
     // Show a random destination on page load
-    showRandomDestination();
+    document.addEventListener("DOMContentLoaded", () => {
+      showRandomDestination();
+    });
   </script>
+</head>
+<body>
+  <h1>Flymeta</h1>
+  <p>Discover a random destination!</p>
+  <img id="destinationImage" src="" alt="Destination Image">
+  <button onclick="showRandomDestination()">Reveal your destination</button>
 </body>
 </html>
