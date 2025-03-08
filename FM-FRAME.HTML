@@ -1,78 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flymeta Frame</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Flymeta Frame&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: #f0f0f0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>img {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>button {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: #007bff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: #0056b3;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Flymeta&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;Discover a random destination!&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;img id="destinationImage" src="" alt="Destination Image"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="showRandomDestination()"&gt;Show Me a Destination&lt;/button&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Load the JSON data (replace with your actual JSON file path or API endpoint)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const destinations = {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"urls": [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg/v1/fit/w_456,h_454,q_90,enc_avif,quality_auto/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"https://static.wixstatic.com/media/5443c9_8f1e33151df344ddad6d779dd85c88f5~mv2.jpg/v1/fit/w_454,h_454,q_90,enc_avif,quality_auto/5443c9_8f1e33151df344ddad6d779dd85c88f5~mv2.jpg",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Add all other URLs here (or load them dynamically from a JSON file)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>]</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Function to display a random destination</p>
-<p class="p1"><span class="Apple-converted-space">    </span>function showRandomDestination() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const randomIndex = Math.floor(Math.random() * destinations.urls.length);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const randomImageUrl = destinations.urls[randomIndex];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("destinationImage").src = randomImageUrl;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Show a random destination on page load</p>
-<p class="p1"><span class="Apple-converted-space">    </span>showRandomDestination();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <h1>Flymeta</h1>
+  <p>Discover a random destination!</p>
+  <img id="destinationImage" src="" alt="Destination Image">
+  <button onclick="showRandomDestination()">Reveal your destination</button>
+
+  <script>
+    // Load the JSON data (replace with your actual JSON file path or API endpoint)
+    const destinations = {
+      "urls": [
+        "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg/v1/fit/w_456,h_454,q_90,enc_avif,quality_auto/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+        "https://static.wixstatic.com/media/5443c9_8f1e33151df344ddad6d779dd85c88f5~mv2.jpg/v1/fit/w_454,h_454,q_90,enc_avif,quality_auto/5443c9_8f1e33151df344ddad6d779dd85c88f5~mv2.jpg",
+        // Add all other URLs here (or load them dynamically from a JSON file)
+      ]
+    };
+
+    // Function to display a random destination
+    function showRandomDestination() {
+      const randomIndex = Math.floor(Math.random() * destinations.urls.length);
+      const randomImageUrl = destinations.urls[randomIndex];
+      document.getElementById("destinationImage").src = randomImageUrl;
+    }
+
+    // Show a random destination on page load
+    showRandomDestination();
+  </script>
 </body>
 </html>
