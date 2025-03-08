@@ -44,14 +44,26 @@
   <script>
     // Function to fetch JSON data
     async function fetchDestinations() {
-      const response = await fetch('https://raw.githubusercontent.com/gabrielmokayed/flymeta-frame/main/FM-URLS.JSON');
-      const data = await response.json();
-      return data.data.images;
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/gabrielmokayed/flymeta-frame/main/FM-URLS.JSON');
+        if (!response.ok) {
+          throw new Error('Failed to fetch JSON data');
+        }
+        const data = await response.json();
+        return data.data.images;
+      } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        return [];
+      }
     }
 
     // Function to display a random destination
     async function showRandomDestination() {
       const destinations = await fetchDestinations();
+      if (destinations.length === 0) {
+        console.error('No destinations found in JSON data');
+        return;
+      }
       const randomIndex = Math.floor(Math.random() * destinations.length);
       const randomImageUrl = destinations[randomIndex];
       document.getElementById("destinationImage").src = randomImageUrl;
