@@ -9,6 +9,9 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         type: 'frame',
         image: randomImageUrl,
@@ -19,5 +22,11 @@ exports.handler = async (event) => {
       }),
     };
   }
-  return { statusCode: 405, body: 'Method not allowed' };
+  return {
+    statusCode: 405,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message: 'Method not allowed' }),
+  };
 };
