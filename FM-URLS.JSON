@@ -8,7 +8,7 @@
     {
       "label": "Reveal Destination",
       "action": "post",
-      "target": “https://gabrielmokayed.github.io/flymeta-frame”
+      "target": “https://gabrielmokayed.github.io/flymeta-frame/”
     }
   ],
   "post_url": "https://gabrielmokayed.github.io/flymeta-frame",
