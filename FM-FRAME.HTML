@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flymeta Frame</title>
-  <meta name="fc:frame" content="your-frame-content">
+  
+  <!-- Farcaster Frame Meta Tags -->
+  <meta name="fc:frame" content="button">
+  <meta name="fc:frame:button:1" content="Reveal Destination">
+  <meta name="fc:frame:post_url" content="https://gabrielmokayed.github.io/flymeta-frame/">
+  
+  <!-- Social Sharing Image -->
   <meta name="fc:frame:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
   <meta property="og:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -34,38 +41,32 @@
       background-color: #0056b3;
     }
   </style>
+
   <script>
-    // Function to fetch JSON data
     async function fetchDestinations() {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/gabrielmokayed/flymeta-frame/main/FM-URLS.JSON');
-        if (!response.ok) {
-          throw new Error('Failed to fetch JSON data');
-        }
+        const response = await fetch('https://gabrielmokayed.github.io/flymeta-frame/FM-URLS.JSON?timestamp=' + new Date().getTime());
+        if (!response.ok) throw new Error('Failed to fetch JSON data');
+        
         const data = await response.json();
-        return data.data.images; // Access the images array
+        return data.images || data.data?.images || []; // Ensure correct structure
       } catch (error) {
-        console.error('Error fetching JSON data:', error);
+        console.error('Error fetching JSON:', error);
         return [];
       }
     }
 
-    // Function to display a random destination
     async function showRandomDestination() {
       const destinations = await fetchDestinations();
       if (destinations.length === 0) {
-        console.error('No destinations found in JSON data');
+        console.error('No images found');
         return;
       }
-      const randomIndex = Math.floor(Math.random() * destinations.length);
-      const randomImageUrl = destinations[randomIndex];
+      const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
       document.getElementById("destinationImage").src = randomImageUrl;
     }
 
-    // Show a random destination on page load
-    document.addEventListener("DOMContentLoaded", () => {
-      showRandomDestination();
-    });
+    document.addEventListener("DOMContentLoaded", showRandomDestination);
   </script>
 </head>
 <body>
