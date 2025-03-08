@@ -11,10 +11,13 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json", 
+        "Access-Control-Allow-Origin": "*" // ✅ Allows cross-origin requests
+      },
       body: JSON.stringify({
-        type: "frame:post", // ✅ Correct type
-        image: randomImageUrl, // ✅ Ensure this is a valid image URL
+        type: "frame:post", // ✅ Ensure correct frame type
+        image: randomImageUrl, // ✅ Ensure valid image URL
         buttons: [
           { label: "Reveal Destination", action: "post" },
           { label: "Get Yours", action: "link", target: "https://opensea.io/collection/flymeta" }
@@ -25,7 +28,10 @@ exports.handler = async (event) => {
 
   return {
     statusCode: 405,
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    },
     body: JSON.stringify({ message: "Method not allowed" }),
   };
 };
