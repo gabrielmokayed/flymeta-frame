@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flymeta Frame</title>
+  <title>Flymeta</title>
   
   <!-- Farcaster Frame Meta Tags -->
   <meta name="fc:frame" content="button">
@@ -49,7 +49,7 @@
         if (!response.ok) throw new Error('Failed to fetch JSON data');
         
         const data = await response.json();
-        return data.images || data.data?.images || []; // Ensure correct structure
+        return data.data?.images || []; // Correctly access images array
       } catch (error) {
         console.error('Error fetching JSON:', error);
         return [];
