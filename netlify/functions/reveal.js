@@ -1,56 +1,53 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const fetch = require("node-fetch");
+const fs = require("fs");
+const path = require("path");
 
-// ✅ Replace __dirname and __filename
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+exports.handler = async (event) => {
+  if (event.httpMethod === "POST") {
+    try {
+      const filePath = path.join(process.cwd(), "destinations.json");
 
-export const handler = async (event) => {
-  try {
-    if (event.httpMethod === 'POST') {
-      // ✅ Correct path to destinations.json in the root folder
-      const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
-      console.log("Reading JSON file from:", jsonPath); // Debug log
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`File not found: ${filePath}`);
+      }
 
-      const data = fs.readFileSync(jsonPath, 'utf8');
-      console.log("Raw JSON data:", data); // Debug log
+      const rawData = fs.readFileSync(filePath, "utf-8");
+      const destinations = JSON.parse(rawData).data.images;
 
-      const jsonData = JSON.parse(data);
-      console.log("Parsed JSON data:", jsonData); // Debug log
-
-      const destinations = jsonData.data.images; // ✅ Access images array
-      console.log("Destinations array:", destinations); // Debug log
-
-      const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
-      console.log("Selected image URL:", randomImageUrl); // Debug log
+      const randomImageUrl =
+        destinations[Math.floor(Math.random() * destinations.length)];
 
       return {
         statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({
-          type: 'frame',
+          type: "frame:post",
           image: randomImageUrl,
           buttons: [
-            { label: 'Reveal Destination', action: 'post' },
-            { label: 'Get Yours', action: 'link', target: 'https://opensea.io/collection/flymeta' }
+            { label: "Reveal Destination", action: "post" },
+            {
+              label: "Get Yours",
+              action: "link",
+              target: "https://opensea.io/collection/flymeta",
+            },
           ],
-          post_url: 'https://fm-frame.netlify.app/.netlify/functions/reveal'
         }),
       };
+    } catch (error) {
+      console.error("Error fetching JSON:", error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: error.message }),
+      };
     }
-
-    return {
-      statusCode: 405,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Method not allowed' }),
-    };
-  } catch (error) {
-    console.error('Error in function:', error); // Debug log
-    return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Internal server error' }),
-    };
   }
+
+  return {
+    statusCode: 405,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: "Method not allowed" }),
+  };
 };
