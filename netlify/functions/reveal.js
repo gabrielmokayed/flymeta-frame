@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 exports.handler = async (event) => {
   if (event.httpMethod === "POST") {
     try {
-      // ✅ Fetch the JSON file from your public folder
+      // ✅ Fetch JSON from the root URL
       const response = await fetch("https://fm-frame.netlify.app/destinations.json");
 
       if (!response.ok) {
