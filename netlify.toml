@@ -6,5 +6,5 @@
 
 [[redirects]]
   from = "/.well-known/farcaster.json"
-  to = "/.well-known/farcaster.json"
+  to = "/farcaster.json"
   status = 200
