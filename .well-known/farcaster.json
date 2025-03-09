@@ -2,15 +2,10 @@
   "version": "vNext",
   "name": "Flymeta Frame",
   "description": "A collection of boarding passes NFTs that evolve over time, minted on the Ethereum blockchain.",
-  "author": "Your Name or Project Name",
-  "contact": "your-email@example.com",
+  "author": "Flymeta",
+  "contact": "contact@flymeta.io",
   "homepage": "https://fm-frame.netlify.app/",
   "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
-  "accountAssociation": {
-    "header": "BASE64URL_ENCODED_HEADER",
-    "payload": "BASE64URL_ENCODED_PAYLOAD",
-    "signature": "YOUR_SIGNATURE"
-  },
   "frames": [
     {
       "name": "Reveal Destination",
