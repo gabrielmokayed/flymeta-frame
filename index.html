@@ -5,21 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flymeta Frame</title>
 
-  <!-- Frame Embed Meta Tag for Frames v2 -->
-  <meta name="fc:frame" content='{
-    "version": "next",
-    "imageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
-    "button": {
-      "title": "Reveal Destination",
-      "action": {
-        "type": "launch_frame",
-        "name": "Flymeta",
-        "url": "https://fm-frame.netlify.app/",
-        "splashImageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
-        "splashBackgroundColor": "#ffffff"
-      }
-    }
-  }' />
+  <!-- Frame Meta Tags for Frames v2 -->
+  <meta name="of:version" content="vNext">
+  <meta name="of:accepts:post" content="application/json">
+
+  <meta name="fc:frame" content="vNext">
+  <meta name="fc:frame:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
+  <meta name="fc:frame:post_url" content="https://fm-frame.netlify.app/.netlify/functions/reveal">
+
+  <meta name="fc:frame:button:1" content="Reveal Destination">
+  <meta name="fc:frame:button:1:action" content="post">
+
+  <meta name="fc:frame:button:2" content="Get Yours">
+  <meta name="fc:frame:button:2:action" content="link">
+  <meta name="fc:frame:button:2:target" content="https://opensea.io/collection/flymeta">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Flymeta Frame">
