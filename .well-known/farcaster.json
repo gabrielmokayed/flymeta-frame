@@ -6,6 +6,9 @@
   "contact": "your-email@example.com",
   "homepage": "https://fm-frame.netlify.app/",
   "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+  "accountAssociation": {
+    "account": "farcaster://fid/32806"
+  },
   "frames": [
     {
       "name": "Reveal Destination",
