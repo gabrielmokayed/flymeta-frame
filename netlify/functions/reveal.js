@@ -1,11 +1,10 @@
-const fetch = require("node-fetch");
 const fs = require("fs");
 const path = require("path");
 
 exports.handler = async (event) => {
   if (event.httpMethod === "POST") {
     try {
-      const filePath = path.join(process.cwd(), "destinations.json");
+      const filePath = path.join(__dirname, "destinations.json");
 
       if (!fs.existsSync(filePath)) {
         throw new Error(`File not found: ${filePath}`);
