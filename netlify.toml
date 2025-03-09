@@ -1,2 +1,5 @@
 [build]
-  functions = "netlify/functions"  # ✅ Explicitly set functions directory
+  functions = "netlify/functions"
+
+[[functions]]
+  included_files = ["netlify/functions/destinations.json"]
