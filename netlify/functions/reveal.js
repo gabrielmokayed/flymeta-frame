@@ -9,8 +9,8 @@ const __dirname = path.dirname(__filename);
 export const handler = async (event) => {
   try {
     if (event.httpMethod === 'POST') {
-      // ✅ Path to destinations.json in the main folder
-      const jsonPath = path.join(__dirname, '..', 'destinations.json');
+      // ✅ Correct path to destinations.json in the root folder
+      const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
       console.log("Reading JSON file from:", jsonPath); // Debug log
 
       const data = fs.readFileSync(jsonPath, 'utf8');
