@@ -1,0 +1,27 @@
+{
+  "version": "vNext",
+  "name": "Flymeta Frame",
+  "description": "A collection of boarding passes NFTs that evolve over time, minted on the Ethereum blockchain.",
+  "author": "Your Name or Project Name",
+  "contact": "your-email@example.com",
+  "homepage": "https://fm-frame.netlify.app/",
+  "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+  "frames": [
+    {
+      "name": "Reveal Destination",
+      "post_url": "https://fm-frame.netlify.app/.netlify/functions/reveal",
+      "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+      "buttons": [
+        {
+          "label": "Reveal Destination",
+          "action": "post"
+        },
+        {
+          "label": "Get Yours",
+          "action": "link",
+          "target": "https://opensea.io/collection/flymeta"
+        }
+      ]
+    }
+  ]
+}
