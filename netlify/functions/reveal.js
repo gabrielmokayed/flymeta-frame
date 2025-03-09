@@ -3,7 +3,7 @@ const path = require('path');
 
 exports.handler = async (event, context) => {
   try {
-    // Locate destinations.json in the root directory
+    // Locate destinations.json in the project root
     const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
 
     if (!fs.existsSync(jsonPath)) {
@@ -15,13 +15,13 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(destinations)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(destinations),
     };
-
   } catch (error) {
     return {
       statusCode: 500,
-      body: `Error fetching JSON: ${error.message}`
+      body: `Error fetching JSON: ${error.message}`,
     };
   }
 };
