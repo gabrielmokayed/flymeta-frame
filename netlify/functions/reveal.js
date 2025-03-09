@@ -3,8 +3,11 @@ const path = require('path');
 
 exports.handler = async (event) => {
   try {
+    console.log("Event received:", event); // Debug log
+
     if (event.httpMethod === 'POST') {
       const body = event.body ? JSON.parse(event.body) : {};
+      console.log("Parsed body:", body); // Debug log
 
       // Load destinations from JSON file
       const jsonPath = path.join(__dirname, 'destinations.json');
@@ -51,7 +54,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({ message: "Method not allowed" }),
     };
   } catch (error) {
-    console.error("Error in function:", error);
+    console.error("Error in function:", error); // Debug log
     return {
       statusCode: 500,
       headers: { 
