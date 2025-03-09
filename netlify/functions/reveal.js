@@ -3,13 +3,18 @@ const path = require('path');
 
 exports.handler = async (event, context) => {
   try {
-    // Make sure the path is correct relative to Netlify function location
-    const jsonPath = path.join(__dirname, '../../destinations.json'); 
+    console.log("Processing request...");
 
-    console.log("Looking for JSON file at:", jsonPath);
+    // Locate destinations.json in the root directory
+    const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
+    console.log(`Looking for JSON file at: ${jsonPath}`);
 
     if (!fs.existsSync(jsonPath)) {
-      throw new Error(`File not found: ${jsonPath}`);
+      console.error(`File not found: ${jsonPath}`);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "destinations.json not found" }),
+      };
     }
 
     const data = fs.readFileSync(jsonPath, 'utf-8');
@@ -19,17 +24,20 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(destinations),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify({ destinations }),
     };
 
   } catch (error) {
     console.error("Error fetching JSON:", error.message);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
