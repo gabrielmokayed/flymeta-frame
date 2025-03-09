@@ -1,52 +1,44 @@
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fs = require('fs'); // Import fs module
+const path = require('path'); // Import path module
 
 exports.handler = async (event) => {
-  if (event.httpMethod === "POST") {
-    try {
-      // ✅ Fetch JSON from the root URL
-      const response = await fetch("https://fm-frame.netlify.app/destinations.json");
+  try {
+    if (event.httpMethod === 'POST') {
+      const body = event.body ? JSON.parse(event.body) : {};
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch JSON: ${response.statusText}`);
-      }
+      // Load destinations from JSON file
+      const jsonPath = path.join(__dirname, 'destinations.json');
+      const data = fs.readFileSync(jsonPath, 'utf8');
+      const jsonData = JSON.parse(data);
 
-      const data = await response.json();
-      const destinations = data.data.images; // ✅ Correctly accessing images array
+      // Access the images array from the "data" key
+      const destinations = jsonData.data.images;
 
-      const randomImageUrl =
-        destinations[Math.floor(Math.random() * destinations.length)];
+      // Select a random image URL
+      const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
 
       return {
         statusCode: 200,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: "frame:post",
+          type: 'frame', // ✅ Correct frame type
           image: randomImageUrl,
           buttons: [
-            { label: "Reveal Destination", action: "post" },
-            {
-              label: "Get Yours",
-              action: "link",
-              target: "https://opensea.io/collection/flymeta",
-            },
+            { label: 'Reveal Destination', action: 'post' },
+            { label: 'Get Yours', action: 'link', target: 'https://opensea.io/collection/flymeta' }
           ],
+          post_url: 'https://fm-frame.netlify.app/.netlify/functions/reveal' // ✅ Include post_url
         }),
       };
-    } catch (error) {
-      console.error("Error fetching JSON:", error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: error.message }),
-      };
     }
-  }
 
-  return {
-    statusCode: 405,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: "Method not allowed" }),
-  };
-};
+    return {
+      statusCode: 405,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Method not allowed' }),
+    };
+  } catch (error) {
+    console.error('Error in function:', error); // Log the error for debugging
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type':
