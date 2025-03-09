@@ -8,14 +8,21 @@ exports.handler = async (event) => {
 
       // Load destinations from JSON file
       const jsonPath = path.join(__dirname, 'destinations.json');
+      console.log("Reading JSON file from:", jsonPath); // Debug log
+
       const data = fs.readFileSync(jsonPath, 'utf8');
+      console.log("Raw JSON data:", data); // Debug log
+
       const jsonData = JSON.parse(data);
+      console.log("Parsed JSON data:", jsonData); // Debug log
 
       // Access the images array from the "data" key
       const destinations = jsonData.data.images;
+      console.log("Destinations array:", destinations); // Debug log
 
       // Select a random image URL
       const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
+      console.log("Selected image URL:", randomImageUrl); // Debug log
 
       return {
         statusCode: 200,
