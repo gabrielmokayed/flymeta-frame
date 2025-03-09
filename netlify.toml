@@ -3,3 +3,8 @@
 
 [functions]
   included_files = ["destinations.json"]
+
+[[redirects]]
+  from = "/.well-known/farcaster.json"
+  to = "/.well-known/farcaster.json"
+  status = 200
