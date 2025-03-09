@@ -1,7 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-exports.handler = async (event) => {
+// ✅ Replace __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export const handler = async (event) => {
   try {
     if (event.httpMethod === 'POST') {
       // ✅ Path to destinations.json in the main folder
@@ -12,20 +18,25 @@ exports.handler = async (event) => {
       console.log("Raw JSON data:", data); // Debug log
 
       const jsonData = JSON.parse(data);
+      console.log("Parsed JSON data:", jsonData); // Debug log
+
       const destinations = jsonData.data.images; // ✅ Access images array
+      console.log("Destinations array:", destinations); // Debug log
+
       const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
+      console.log("Selected image URL:", randomImageUrl); // Debug log
 
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: 'frame', // ✅ Correct frame type
+          type: 'frame',
           image: randomImageUrl,
           buttons: [
             { label: 'Reveal Destination', action: 'post' },
             { label: 'Get Yours', action: 'link', target: 'https://opensea.io/collection/flymeta' }
           ],
-          post_url: 'https://fm-frame.netlify.app/.netlify/functions/reveal' // ✅ Include post_url
+          post_url: 'https://fm-frame.netlify.app/.netlify/functions/reveal'
         }),
       };
     }
