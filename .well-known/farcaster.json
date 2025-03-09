@@ -6,6 +6,11 @@
   "contact": "contact@flymeta.io",
   "homepage": "https://fm-frame.netlify.app/",
   "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+  "accountAssociation": {
+    "header": "eyJhbGciOiJFZDI1NTE5IiwidHlwIjoiSldUIn0",
+    "payload": "eyJhY2NvdW50IjoiZmFyY2FzdGVyOi8vZmlkLzMyODA2OCIsImlhdCI6MTcxMDAwMDAwMH0",
+    "signature": "pPoLVlI1VamxbEyxSu-8XUcyXlnuuTqzDmaOZ1WDBOFog8GqkSvMIilVSqa1Cb83xMrENe8Zoi7_iS_jOatuCw"
+  },
   "frames": [
     {
       "name": "Reveal Destination",
