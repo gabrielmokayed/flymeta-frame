@@ -2,14 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// ✅ Replace __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const handler = async (event) => {
   try {
     if (event.httpMethod === 'POST') {
-      // ✅ Correct path to destinations.json in the root folder
       const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
       console.log("Reading JSON file from:", jsonPath); // Debug log
 
@@ -19,7 +17,7 @@ export const handler = async (event) => {
       const jsonData = JSON.parse(data);
       console.log("Parsed JSON data:", jsonData); // Debug log
 
-      const destinations = jsonData.data.images; // ✅ Access images array
+      const destinations = jsonData.data.images; 
       console.log("Destinations array:", destinations); // Debug log
 
       const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
