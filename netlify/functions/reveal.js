@@ -1,18 +1,17 @@
-const fs = require("fs");
-const path = require("path");
+const fetch = require("node-fetch");
 
 exports.handler = async (event) => {
   if (event.httpMethod === "POST") {
     try {
-      // ✅ Verify the file exists before reading it
-      const filePath = path.join(__dirname, "destinations.json");
-      
-      if (!fs.existsSync(filePath)) {
-        throw new Error(`File not found: ${filePath}`);
+      // ✅ Fetch the JSON file from your public folder
+      const response = await fetch("https://fm-frame.netlify.app/destinations.json");
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch JSON: ${response.statusText}`);
       }
 
-      const rawData = fs.readFileSync(filePath, "utf-8");
-      const destinations = JSON.parse(rawData).data.images;
+      const data = await response.json();
+      const destinations = data.data.images; // ✅ Correctly accessing images array
 
       const randomImageUrl =
         destinations[Math.floor(Math.random() * destinations.length)];
@@ -37,7 +36,7 @@ exports.handler = async (event) => {
         }),
       };
     } catch (error) {
-      console.error("Error loading destinations.json:", error);
+      console.error("Error fetching JSON:", error);
       return {
         statusCode: 500,
         body: JSON.stringify({ error: error.message }),
