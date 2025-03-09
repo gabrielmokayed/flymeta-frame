@@ -1,17 +1,16 @@
-const fs = require("fs");
-const path = require("path");
+const fetch = require("node-fetch");
 
 exports.handler = async (event) => {
   if (event.httpMethod === "POST") {
     try {
-      const filePath = path.join(__dirname, "destinations.json");
+      const response = await fetch("https://fm-frame.netlify.app/destinations.json");
 
-      if (!fs.existsSync(filePath)) {
-        throw new Error(`File not found: ${filePath}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch JSON: ${response.statusText}`);
       }
 
-      const rawData = fs.readFileSync(filePath, "utf-8");
-      const destinations = JSON.parse(rawData).data.images;
+      const data = await response.json();
+      const destinations = data.data.images; 
 
       const randomImageUrl =
         destinations[Math.floor(Math.random() * destinations.length)];
