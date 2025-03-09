@@ -3,8 +3,8 @@ const path = require('path');
 
 exports.handler = async (event, context) => {
   try {
-    // Locate destinations.json in the project root
-    const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
+    // Change the path to match the root directory
+    const jsonPath = path.join(__dirname, '..', '..', '..', 'destinations.json');
 
     if (!fs.existsSync(jsonPath)) {
       throw new Error(`File not found: ${jsonPath}`);
@@ -15,9 +15,9 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(destinations),
     };
+
   } catch (error) {
     return {
       statusCode: 500,
