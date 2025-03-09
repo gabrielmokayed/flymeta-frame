@@ -9,7 +9,10 @@ exports.handler = async (event) => {
       // Load destinations from JSON file
       const jsonPath = path.join(__dirname, 'destinations.json');
       const data = fs.readFileSync(jsonPath, 'utf8');
-      const destinations = JSON.parse(data).destinations;
+      const jsonData = JSON.parse(data);
+
+      // Access the images array from the "data" key
+      const destinations = jsonData.data.images;
 
       // Select a random image URL
       const randomImageUrl = destinations[Math.floor(Math.random() * destinations.length)];
@@ -24,10 +27,10 @@ exports.handler = async (event) => {
           type: "frame",
           image: randomImageUrl,
           buttons: [
-            { label: "Reveal Destination", action: "post" }, // 🔥 Action is "post"
+            { label: "Reveal Destination", action: "post" },
             { label: "Get Yours", action: "link", target: "https://opensea.io/collection/flymeta" }
           ],
-          post_url: "https://fm-frame.netlify.app/.netlify/functions/reveal" // 🔥 Include post_url
+          post_url: "https://fm-frame.netlify.app/.netlify/functions/reveal"
         }),
       };
     }
