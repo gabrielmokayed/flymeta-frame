@@ -7,14 +7,8 @@
   "homepage": "https://fm-frame.netlify.app/",
   "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
   "accountAssociation": {
-    "header": {
-      "alg": "Ed25519",
-      "typ": "JWT"
-    },
-    "payload": {
-      "account": "farcaster://fid/32806",
-      "iat": 1710000000
-    },
+    "header": "BASE64URL_ENCODED_HEADER",
+    "payload": "BASE64URL_ENCODED_PAYLOAD",
     "signature": "YOUR_SIGNATURE"
   },
   "frames": [
