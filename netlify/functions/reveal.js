@@ -7,7 +7,7 @@ exports.handler = async (event) => {
       // ✅ Read the destinations.json file dynamically
       const filePath = path.join(__dirname, "destinations.json");
       const rawData = fs.readFileSync(filePath, "utf-8");
-      const destinations = JSON.parse(rawData).images;
+      const destinations = JSON.parse(rawData).data.images;
 
       const randomImageUrl =
         destinations[Math.floor(Math.random() * destinations.length)];
