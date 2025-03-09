@@ -4,8 +4,13 @@ const path = require("path");
 exports.handler = async (event) => {
   if (event.httpMethod === "POST") {
     try {
-      // ✅ Read the destinations.json file dynamically
+      // ✅ Verify the file exists before reading it
       const filePath = path.join(__dirname, "destinations.json");
+      
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`File not found: ${filePath}`);
+      }
+
       const rawData = fs.readFileSync(filePath, "utf-8");
       const destinations = JSON.parse(rawData).data.images;
 
@@ -35,7 +40,7 @@ exports.handler = async (event) => {
       console.error("Error loading destinations.json:", error);
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: "Failed to load destinations.json" }),
+        body: JSON.stringify({ error: error.message }),
       };
     }
   }
