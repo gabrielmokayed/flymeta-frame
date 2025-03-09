@@ -1,51 +1,27 @@
-const fetch = require("node-fetch");
+const fs = require('fs');
+const path = require('path');
 
-exports.handler = async (event) => {
-  if (event.httpMethod === "POST") {
-    try {
-      const response = await fetch("https://fm-frame.netlify.app/destinations.json");
+exports.handler = async (event, context) => {
+  try {
+    // Locate destinations.json in the root directory
+    const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch JSON: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      const destinations = data.data.images; 
-
-      const randomImageUrl =
-        destinations[Math.floor(Math.random() * destinations.length)];
-
-      return {
-        statusCode: 200,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          type: "frame:post",
-          image: randomImageUrl,
-          buttons: [
-            { label: "Reveal Destination", action: "post" },
-            {
-              label: "Get Yours",
-              action: "link",
-              target: "https://opensea.io/collection/flymeta",
-            },
-          ],
-        }),
-      };
-    } catch (error) {
-      console.error("Error fetching JSON:", error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: error.message }),
-      };
+    if (!fs.existsSync(jsonPath)) {
+      throw new Error(`File not found: ${jsonPath}`);
     }
-  }
 
-  return {
-    statusCode: 405,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: "Method not allowed" }),
-  };
+    const data = fs.readFileSync(jsonPath, 'utf-8');
+    const destinations = JSON.parse(data);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(destinations)
+    };
+
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: `Error fetching JSON: ${error.message}`
+    };
+  }
 };
