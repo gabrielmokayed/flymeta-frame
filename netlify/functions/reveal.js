@@ -1,11 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
-// ✅ Replace __dirname
+// ✅ Replace __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
 export const handler = async (event) => {
   try {
