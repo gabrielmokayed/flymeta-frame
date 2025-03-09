@@ -5,21 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flymeta Frame</title>
 
-  <!-- Required for Farcaster Frames -->
-  <meta property="of:version" content="vNext">
-  <meta property="of:accepts:post" content="application/json">
+  <!-- Frame Embed Meta Tag for Frames v2 -->
+  <meta name="fc:frame" content='{
+    "version": "next",
+    "imageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+    "button": {
+      "title": "Reveal Destination",
+      "action": {
+        "type": "launch_frame",
+        "name": "Flymeta",
+        "url": "https://fm-frame.netlify.app/",
+        "splashImageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+        "splashBackgroundColor": "#ffffff"
+      }
+    }
+  }' />
 
-  <!-- Frame Meta Tags (Fixed) -->
-  <meta property="fc:frame" content="vNext">
-  <meta property="fc:frame:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
-  <meta property="fc:frame:button:1" content="Reveal Destination">
-  <meta property="fc:frame:button:1:action" content="post">
-  <meta property="fc:frame:post_url" content="https://fm-frame.netlify.app/.netlify/functions/reveal">
-  <meta property="fc:frame:button:2" content="Get Yours">
-  <meta property="fc:frame:button:2:action" content="link">
-  <meta property="fc:frame:button:2:target" content="https://opensea.io/collection/flymeta">
-
-  <!-- Open Graph (OG) Meta Tags (Fixed) -->
+  <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Flymeta Frame">
   <meta property="og:description" content="A collection of boarding passes NFTs that evolve over time minted on the Ethereum blockchain.">
   <meta property="og:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
