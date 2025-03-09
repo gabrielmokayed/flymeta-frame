@@ -21,12 +21,13 @@ exports.handler = async (event) => {
           "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify({
-          type: "frame:post",
+          type: "frame",
           image: randomImageUrl,
           buttons: [
-            { label: "Reveal Destination", action: "post" },
+            { label: "Reveal Destination", action: "post" }, // 🔥 Action is "post"
             { label: "Get Yours", action: "link", target: "https://opensea.io/collection/flymeta" }
-          ]
+          ],
+          post_url: "https://fm-frame.netlify.app/.netlify/functions/reveal" // 🔥 Include post_url
         }),
       };
     }
