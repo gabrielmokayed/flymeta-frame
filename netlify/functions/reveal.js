@@ -52,6 +52,23 @@ exports.handler = async (event, context) => {
       throw new Error("Random destination is invalid or missing an image property.");
     }
 
+    // Proper Farcaster V2 Frame response
+    const frameResponse = {
+      version: "vNext",
+      image: randomDestination.image,
+      buttons: [
+        {
+          label: "Reveal Destination",
+          action: "post"
+        },
+        {
+          label: "Get Yours",
+          action: "link",
+          target: "https://opensea.io/collection/flymeta"
+        }
+      ]
+    };
+
     return {
       statusCode: 200,
       headers: {
@@ -60,7 +77,7 @@ exports.handler = async (event, context) => {
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },
-      body: JSON.stringify({ image: randomDestination.image }),
+      body: JSON.stringify(frameResponse),
     };
 
   } catch (error) {
