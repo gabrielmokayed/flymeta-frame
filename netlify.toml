@@ -6,10 +6,5 @@
 
 [[redirects]]
   from = "/.well-known/farcaster.json"
-  to = "/farcaster.json"
-  status = 200
-
-[[redirects]]
-  from = "/.netlify/functions/reveal"
-  to = "/.netlify/functions/reveal"
+  to = "/.well-known/farcaster.json"
   status = 200
