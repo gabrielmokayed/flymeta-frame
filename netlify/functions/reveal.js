@@ -2,20 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async (event, context) => {
-  console.log("Incoming Event:", JSON.stringify(event));
-
-  // Handle CORS preflight requests
-  if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    };
-  }
-
   try {
     console.log("Processing request...");
 
@@ -29,6 +15,8 @@ exports.handler = async (event, context) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
         },
         body: JSON.stringify({ error: "destinations.json not found" }),
       };
@@ -37,15 +25,33 @@ exports.handler = async (event, context) => {
     const data = fs.readFileSync(jsonPath, 'utf-8');
     const destinations = JSON.parse(data);
 
-    console.log("Successfully read destinations.json");
+    // Randomly select a destination
+    const randomDestination = destinations[Math.floor(Math.random() * destinations.length)];
+
+    console.log("Randomly selected destination:", randomDestination);
 
     return {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
-      body: JSON.stringify({ destinations }),
+      body: JSON.stringify({
+        image: randomDestination.image,
+        button: [
+          {
+            label: "Reveal Destination",
+            action: "post"
+          },
+          {
+            label: "Get Yours",
+            action: "link",
+            target: "https://opensea.io/collection/flymeta"
+          }
+        ]
+      }),
     };
 
   } catch (error) {
@@ -55,6 +61,8 @@ exports.handler = async (event, context) => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({ error: error.message }),
     };
