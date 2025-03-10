@@ -6,25 +6,25 @@
   <title>Flymeta Frame</title>
 
   <!-- Frame Embed Meta Tag for Frames v2 -->
-  <meta name="fc:frame" content="vNext">
-  <meta name="fc:frame:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
-
-  <!-- Button 1: Reveal Destination -->
-  <meta name="fc:frame:button:1" content="Reveal Destination">
-  <meta name="fc:frame:button:1:action" content="post">
-  <meta name="fc:frame:post_url" content="https://fm-frame.netlify.app/.netlify/functions/reveal">
-
-  <!-- Button 2: Get Yours (Link to OpenSea) -->
-  <meta name="fc:frame:button:2" content="Get Yours">
-  <meta name="fc:frame:button:2:action" content="link">
-  <meta name="fc:frame:button:2:target" content="https://opensea.io/collection/flymeta">
+  <meta name="fc:frame" content='{
+    "version": "next",
+    "imageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+    "button": {
+      "title": "Reveal Destination",
+      "action": {
+        "type": "launch_frame",
+        "name": "Flymeta Frame",
+        "url": "https://fm-frame.netlify.app/",
+        "splashImageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+        "splashBackgroundColor": "#ffffff"
+      }
+    }
+  }' />
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Flymeta Frame">
-  <meta property="og:description" content="A collection of boarding passes NFTs that evolve over time minted on the Ethereum blockchain.">
+  <meta property="og:description" content="A collection of boarding passes NFTs that evolve over time, minted on the Ethereum blockchain.">
   <meta property="og:image" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
-
-  <!-- Farcaster Manifest -->
   <link rel="manifest" href="/.well-known/farcaster.json">
 
   <style>
@@ -40,11 +40,27 @@
       height: auto;
       border-radius: 10px;
     }
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>Flymeta</h1>
-  <p>A collection of boarding passes NFTs that evolve over time minted on the Ethereum blockchain.</p>
+  <p>A collection of boarding passes NFTs that evolve over time, minted on the Ethereum blockchain.</p>
   <img id="destinationImage" src="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg" alt="Destination Image">
+  <div>
+    <a class="button" href="https://fm-frame.netlify.app/.netlify/functions/reveal" target="_blank">Reveal Destination</a>
+    <a class="button" href="https://opensea.io/collection/flymeta" target="_blank">Get Yours</a>
+  </div>
 </body>
 </html>
