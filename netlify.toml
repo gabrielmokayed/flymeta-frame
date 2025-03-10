@@ -2,9 +2,9 @@
   functions = "netlify/functions"
 
 [functions]
-  included_files = ["./destinations.json"]
+  included_files = ["destinations.json"]
 
 [[redirects]]
   from = "/.well-known/farcaster.json"
-  to = "/.well-known/farcaster.json"
+  to = "/farcaster.json"
   status = 200
