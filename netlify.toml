@@ -8,3 +8,8 @@
   from = "/.well-known/farcaster.json"
   to = "/farcaster.json"
   status = 200
+
+[[headers]]
+  for = "/farcaster.json"
+  [headers.values]
+    Content-Type = "application/json"
