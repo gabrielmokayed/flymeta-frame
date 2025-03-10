@@ -18,8 +18,8 @@ exports.handler = async (event, context) => {
   try {
     console.log("Processing request...");
 
-    // Adjust the path for Netlify's serverless environment
-    const jsonPath = path.resolve(__dirname, '../../destinations.json');
+    // Use relative path back to root
+    const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
     console.log(`Looking for JSON file at: ${jsonPath}`);
 
     if (!fs.existsSync(jsonPath)) {
