@@ -2,10 +2,14 @@
   functions = "netlify/functions"
 
 [functions]
-  node_bundler = "esbuild"
   included_files = ["./destinations.json"]
 
 [[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
+  from = "/.well-known/farcaster.json"
+  to = "/farcaster.json"
+  status = 200
+
+[[redirects]]
+  from = "/.netlify/functions/reveal"
+  to = "/.netlify/functions/reveal"
   status = 200
