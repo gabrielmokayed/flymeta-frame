@@ -18,8 +18,8 @@ exports.handler = async (event, context) => {
   try {
     console.log("Processing request...");
 
-    // Locate destinations.json in the root directory
-    const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
+    // Adjust the path to point to the root directory
+    const jsonPath = path.join(__dirname, '..', '..', '..', 'destinations.json');
     console.log(`Looking for JSON file at: ${jsonPath}`);
 
     if (!fs.existsSync(jsonPath)) {
@@ -47,12 +47,10 @@ exports.handler = async (event, context) => {
     const randomDestination = destinations[Math.floor(Math.random() * destinations.length)];
     console.log("Selected Destination:", randomDestination);
 
-    // Ensure the random destination has an image
     if (!randomDestination || !randomDestination.image) {
       throw new Error("Random destination is invalid or missing an image property.");
     }
 
-    // Proper Farcaster V2 Frame response
     const frameResponse = {
       version: "vNext",
       image: randomDestination.image,
