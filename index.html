@@ -7,18 +7,24 @@
 
   <!-- Frame Embed Meta Tag for Frames v2 -->
   <meta name="fc:frame" content='{
-    "version": "next",
-    "imageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
-    "button": {
-      "title": "Reveal Destination",
-      "action": {
-        "type": "launch_frame",
-        "name": "Flymeta Frame",
-        "url": "https://fm-frame.netlify.app/",
-        "splashImageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
-        "splashBackgroundColor": "#ffffff"
+    "version": "v2",
+    "image": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+    "buttons": [
+      {
+        "label": "Reveal Destination",
+        "action": {
+          "type": "post",
+          "url": "https://fm-frame.netlify.app/.netlify/functions/reveal"
+        }
+      },
+      {
+        "label": "Get Yours",
+        "action": {
+          "type": "link",
+          "url": "https://opensea.io/collection/flymeta"
+        }
       }
-    }
+    ]
   }' />
 
   <!-- Open Graph Meta Tags -->
