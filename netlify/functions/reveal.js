@@ -4,7 +4,7 @@ const path = require('path');
 exports.handler = async (event, context) => {
   console.log("Incoming Event:", JSON.stringify(event));
 
-  // Handle CORS preflight request
+  // Handle CORS preflight requests
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -19,7 +19,6 @@ exports.handler = async (event, context) => {
   try {
     console.log("Processing request...");
 
-    // Locate destinations.json in the root directory
     const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
     console.log(`Looking for JSON file at: ${jsonPath}`);
 
@@ -30,8 +29,6 @@ exports.handler = async (event, context) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type",
         },
         body: JSON.stringify({ error: "destinations.json not found" }),
       };
@@ -39,6 +36,7 @@ exports.handler = async (event, context) => {
 
     const data = fs.readFileSync(jsonPath, 'utf-8');
     const destinations = JSON.parse(data);
+
     console.log("Successfully read destinations.json");
 
     return {
@@ -46,8 +44,6 @@ exports.handler = async (event, context) => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({ destinations }),
     };
@@ -59,8 +55,6 @@ exports.handler = async (event, context) => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({ error: error.message }),
     };
