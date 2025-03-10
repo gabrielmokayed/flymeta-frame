@@ -1,3 +1,16 @@
+exports.handler = async (event, context) => {
+  console.log("Incoming Event:", JSON.stringify(event));
+
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    };
+  }
 const fs = require('fs');
 const path = require('path');
 
