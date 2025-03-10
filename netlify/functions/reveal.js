@@ -2,9 +2,23 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async (event, context) => {
+  console.log("Incoming Event:", JSON.stringify(event));
+
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    };
+  }
+
   try {
     console.log("Processing request...");
 
+    // Locate destinations.json in the root directory
     const jsonPath = path.join(__dirname, '..', '..', 'destinations.json');
     console.log(`Looking for JSON file at: ${jsonPath}`);
 
@@ -25,10 +39,18 @@ exports.handler = async (event, context) => {
     const data = fs.readFileSync(jsonPath, 'utf-8');
     const destinations = JSON.parse(data);
 
-    // Randomly select a destination
-    const randomDestination = destinations[Math.floor(Math.random() * destinations.length)];
+    if (!Array.isArray(destinations) || destinations.length === 0) {
+      throw new Error("No destinations available in the JSON.");
+    }
 
-    console.log("Randomly selected destination:", randomDestination);
+    // Select a random destination
+    const randomDestination = destinations[Math.floor(Math.random() * destinations.length)];
+    console.log("Selected Destination:", randomDestination);
+
+    // Ensure the random destination has an image
+    if (!randomDestination || !randomDestination.image) {
+      throw new Error("Random destination is invalid or missing an image property.");
+    }
 
     return {
       statusCode: 200,
@@ -38,20 +60,7 @@ exports.handler = async (event, context) => {
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },
-      body: JSON.stringify({
-        image: randomDestination.image,
-        button: [
-          {
-            label: "Reveal Destination",
-            action: "post"
-          },
-          {
-            label: "Get Yours",
-            action: "link",
-            target: "https://opensea.io/collection/flymeta"
-          }
-        ]
-      }),
+      body: JSON.stringify({ image: randomDestination.image }),
     };
 
   } catch (error) {
