@@ -18,8 +18,8 @@ exports.handler = async (event, context) => {
   try {
     console.log("Processing request...");
 
-    // Adjust the path to point to the root directory
-    const jsonPath = path.join(__dirname, '..', '..', '..', 'destinations.json');
+    // Adjust the path for Netlify's serverless environment
+    const jsonPath = path.resolve(__dirname, '../../destinations.json');
     console.log(`Looking for JSON file at: ${jsonPath}`);
 
     if (!fs.existsSync(jsonPath)) {
@@ -43,7 +43,6 @@ exports.handler = async (event, context) => {
       throw new Error("No destinations available in the JSON.");
     }
 
-    // Select a random destination
     const randomDestination = destinations[Math.floor(Math.random() * destinations.length)];
     console.log("Selected Destination:", randomDestination);
 
