@@ -9,26 +9,17 @@
   <meta name="fc:frame" content='{
     "version": "next",
     "imageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
-    "button": [
-      {
-        "title": "Reveal Destination",
-        "action": {
-          "type": "post",
-          "url": "https://fm-frame.netlify.app/.netlify/functions/reveal"
-        }
-      },
-      {
-        "title": "Get Yours",
-        "action": {
-          "type": "link",
-          "url": "https://opensea.io/collection/flymeta"
-        }
+    "button": {
+      "title": "Reveal Destination",
+      "action": {
+        "type": "post",
+        "url": "https://fm-frame.netlify.app/.netlify/functions/reveal"
       }
-    ]
+    }
   }' />
 
   <!-- Frame Manifest Meta Tags -->
-  <meta name="fc:frame.version" content="vNext">
+  <meta name="fc:frame.version" content="next">
   <meta name="fc:frame.iconUrl" content="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg">
   <meta name="fc:frame.homeUrl" content="https://fm-frame.netlify.app/">
 
@@ -71,7 +62,7 @@
   <p>A collection of boarding passes NFTs that evolve over time, minted on the Ethereum blockchain.</p>
   <img id="destinationImage" src="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg" alt="Destination Image">
   <div>
-    <a class="button" href="https://fm-frame.netlify.app/.netlify/functions/reveal" target="_blank">Reveal Destination</a>
+    <!-- Secondary Button (non-Farcaster) -->
     <a class="button" href="https://opensea.io/collection/flymeta" target="_blank">Get Yours</a>
   </div>
 </body>
