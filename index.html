@@ -12,10 +12,18 @@
     "button": {
       "title": "Reveal Destination",
       "action": {
-        "type": "link",
-        "url": "https://fm-frame.netlify.app/.netlify/functions/reveal"
+        "type": "launch_frame",
+        "name": "Flymeta Frame",
+        "url": "https://fm-frame.netlify.app/.netlify/functions/reveal",
+        "splashImageUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
+        "splashBackgroundColor": "#ffffff"
       }
-    },
+    }
+  }' />
+
+  <!-- Manifest Meta for Frame V2 -->
+  <meta name="fc:manifest" content='{
+    "version": "next",
     "iconUrl": "https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg",
     "homeUrl": "https://fm-frame.netlify.app/"
   }' />
@@ -58,7 +66,6 @@
   <p>A collection of boarding passes NFTs that evolve over time, minted on the Ethereum blockchain.</p>
   <img id="destinationImage" src="https://static.wixstatic.com/media/5443c9_114aa225fdc4451a8325c1f302f23793~mv2.jpg" alt="Destination Image">
   <div>
-    <!-- Secondary Button shown after reveal -->
     <a class="button" href="https://opensea.io/collection/flymeta" target="_blank">Get Yours</a>
   </div>
 </body>
